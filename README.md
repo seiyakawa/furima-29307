@@ -27,16 +27,16 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column            | Type     | Options     |
-| ----------------- | -------- | ----------- |
-| nickname          | string   | null: false |
-| email             | string   | null: false |
-| password          | string   | null: false |
-| family_name_kanzi | string   | null: false |
-| first_name_kanzi  | string   | null: false |
-| family_name_kana  | string   | null: false |
-| first_name_kana   | string   | null: false |
-| birthday          | integer  | null: false |
+| Column            | Type   | Options     |
+| ----------------- | ------ | ----------- |
+| nickname          | string | null: false |
+| email             | string | null: false |
+| password          | string | null: false |
+| family_name_kanzi | string | null: false |
+| first_name_kanzi  | string | null: false |
+| family_name_kana  | string | null: false |
+| first_name_kana   | string | null: false |
+| birthday          | date   | null: false |
 
 ### Association
 
@@ -45,17 +45,16 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column          | Type      | Option                        |
-| --------------- | --------- | ----------------------------- |
-| image           | text      | null: false                   |
-| name            | string    | null: false                   |
-| category        | string    | null: false                   |
-| status          | string    | null: false                   |
-| shipping_burden | string    | null: false                   |
-| shipping_area   | string    | null: false                   |
-| shipping_day    | integer   | null: false                   |
-| price           | integer   | null: false                   |
-| user_id         | reference | null: false, foreign_key:true |
+| Column             | Type       | Option                        |
+| ------------------ | ---------- | ----------------------------- |
+| name               | string     | null: false                   |
+| category_id        | integer    | null: false                   |
+| status_id          | integer    | null: false                   |
+| shipping_burden_id | integer    | null: false                   |
+| shipping_area_id   | integer    | null: false                   |
+| shipping_day_id    | integer    | null: false                   |
+| price              | integer    | null: false                   |
+| user               | references | null: false, foreign_key:true |
 
 ### Association
 
@@ -64,18 +63,16 @@ Things you may want to cover:
 
 ## orders テーブル
 
-| Column          | Type      | Options                       |
-| --------------- | --------  | ----------------------------- |
-| card_number     | integer   | null: false                   |
-| expiration_date | integer   | null: false                   |
-| security_number | integer   | null: false                   |
-| post_number     | integer   | null: false                   |
-| prefecture      | string    | null: false                   |
-| city            | string    | null: false                   |
-| address         | string    | null: false                   |
-| building        | string    | null: false                   |
-| phone_number    | integer   | null: false                   |
-| user_id         | reference | null: false, foreign_key:true |
+| Column        | Type       | Options                       |
+| ------------- | ---------- | ----------------------------- |
+| post_number   | string     | null: false                   |
+| prefecture_id | integer    | null: false                   |
+| city          | string     | null: false                   |
+| address       | string     | null: false                   |
+| building      | string     |                               |
+| phone_number  | string     | null: false                   |
+| user          | references | null: false, foreign_key:true |
+| item          | references | null: false, foreign_key:true |
 
 ### Association
 
