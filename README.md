@@ -63,6 +63,17 @@ Things you may want to cover:
 
 ## orders テーブル
 
+| user    | references | null: false, foreign_key:true |
+| item    | references | null: false, foreign_key:true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+- has_one :address
+
+## addresses テーブル
+
 | Column        | Type       | Options                       |
 | ------------- | ---------- | ----------------------------- |
 | post_number   | string     | null: false                   |
@@ -71,10 +82,8 @@ Things you may want to cover:
 | address       | string     | null: false                   |
 | building      | string     |                               |
 | phone_number  | string     | null: false                   |
-| user          | references | null: false, foreign_key:true |
-| item          | references | null: false, foreign_key:true |
+| order         | references | null: false, foreign_key:true |
 
 ### Association
 
-- belongs_to :user
 - belongs_to :order
