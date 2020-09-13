@@ -17,5 +17,5 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :family_name_kanzi, :first_name_kanzi, :family_name_kana, :first_name_kana, :birthday])
   end
-  # ストロングパラメーター [nickname]キーの内容の保存をpermitメソッドで許可
+  # ストロングパラメーター キーの内容の保存をpermitメソッドで許可
 end
