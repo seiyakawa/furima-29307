@@ -8,8 +8,8 @@ class Item < ApplicationRecord
   belongs_to_active_hash :scheduled_delivery
 
   #空の投稿を保存できないように設定
-  validates :name, :text, :category, :sales_status, :shipping_fee_status, :prefecture, :scheduled_delivery, price, presence: true
+  validates :name, :text, :category, :sales_status, :shipping_fee_status, :prefecture, :scheduled_delivery, :price, presence: true
 
   #ジャンルの選択が「--」の時は保存できないように設定
-  validates :category_id, :sales_status, :shipping_fee_status, :prefecture, :scheduled_delivery, numericality: { other_than: 0 } 
+  validates :category_id, :sales_status_id, :shipping_fee_status_id, :prefecture_id, :scheduled_delivery_id, numericality: { other_than: 0 } 
 end
