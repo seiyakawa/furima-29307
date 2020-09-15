@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:index]
+  before_action :move_to_loguin, except: [:index]
 
   def index
     @items = Item.all.order("created_at DESC")
@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
   end
 
 # 未ログインのユーザーをログインページへ遷移
-  def move_to_index
+  def move_to_loguin
     unless user_signed_in?
       redirect_to new_user_session_path
     end
