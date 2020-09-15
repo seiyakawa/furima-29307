@@ -1,4 +1,7 @@
 class Item < ApplicationRecord
+  belongs_to :user
+  # itemsテーブルのレコードと画像を紐づけるためにhas_one_attachedというメソッドを利用
+  has_one_attached :image
   # ActiveHashを使用してアソシエーションを設定
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category

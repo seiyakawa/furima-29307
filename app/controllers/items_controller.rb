@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
 
 # ストロングパラメーターを定義
   def item_params
-    params.require(:item).permit(:name, :text, :category_id, :sales_status_id, :shipping_fee_status_id, :prefecture_id, :scheduled_delivery_id, :price)
+    params.require(:item).permit(:image, :name, :text, :category_id, :sales_status_id, :shipping_fee_status_id, :prefecture_id, :scheduled_delivery_id, :price).merge(user_id: current_user.id)
   end
 
 # 未ログインのユーザーをログインページへ遷移
