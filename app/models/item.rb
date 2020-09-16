@@ -15,15 +15,17 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :text
+    # validates :category
+    # validates :sales_status
+    # validates :shipping_fee_status
+    # validates :prefecture
+    # validates :scheduled_delivery
     # 価格の入力は半角数字のみ 範囲は300から9,999,999
-    validates :price, format: { with: /\A[0-9]+\z/, message: "Half width"} , inclusion: {in: 300..9999999, message: "Out of setting range" } 
-    validates :category
-    validates :sales_status
-    validates :shipping_fee_status
-    validates :prefecture
-    validates :scheduled_delivery
+    validates :price, numericality: { with: /\A[0-9]+\z/, message: 'Half-width number' }
+    validates_inclusion_of :price, in: 300..9_999_999, message: 'Out of setting range'
+    # validates :price,  inclusion: {in: 300..9999999, message: "Out of setting range" } 
   end
-
+  
   #ジャンルの選択が「--」の時は保存できないように設定
   with_options numericality: { other_than: 0, message: "Select"} do
     validates :category_id
