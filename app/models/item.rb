@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :scheduled_delivery
 
- #空の投稿を保存できないように設定
+  # 空の投稿を保存できないように設定
   with_options presence: true do
     validates :image
     validates :name
@@ -23,11 +23,11 @@ class Item < ApplicationRecord
     # 価格の入力は半角数字のみ 範囲は300から9,999,999
     validates :price, numericality: { with: /\A[0-9]+\z/, message: 'Half-width number' }
     validates_inclusion_of :price, in: 300..9_999_999, message: 'Out of setting range'
-    # validates :price,  inclusion: {in: 300..9999999, message: "Out of setting range" } 
+    # validates :price,  inclusion: {in: 300..9999999, message: "Out of setting range" }
   end
-  
-  #ジャンルの選択が「--」の時は保存できないように設定
-  with_options numericality: { other_than: 0, message: "Select"} do
+
+  # ジャンルの選択が「--」の時は保存できないように設定
+  with_options numericality: { other_than: 0, message: 'Select' } do
     validates :category_id
     validates :sales_status_id
     validates :shipping_fee_status_id
