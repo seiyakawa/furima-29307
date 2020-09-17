@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   # ルートパスの画面をitemsコントローラーのindexビューに設定
   root to: 'items#index'
   # itemsコントローラーのアクションを定義
-  resources :items, only: [:index, :new, :create]
+  resources :items
 end
