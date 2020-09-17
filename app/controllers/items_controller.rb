@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_loguin, except: [:index, :show]
-  before_action :set_tweet, only: [:edit, :show]
+  before_action :set_item, only: [:edit, :show]
   def index
     @items = Item.includes(:user).order('created_at DESC')
   end
@@ -45,7 +45,7 @@ class ItemsController < ApplicationController
     redirect_to new_user_session_path unless user_signed_in?
   end
 
-  def set_tweet
+  def set_item
     @item = Item.find(params[:id])
   end
 end
