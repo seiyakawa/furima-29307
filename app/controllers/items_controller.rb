@@ -49,8 +49,10 @@ class ItemsController < ApplicationController
   end
 
   # 未ログインのユーザーをログインページへ遷移
-  def move_to_loguin
-    redirect_to new_user_session_path unless user_signed_in?
+  def move_to_login
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
   end
 
   def set_item
