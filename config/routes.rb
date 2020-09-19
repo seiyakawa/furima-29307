@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root to: 'items#index'
   # itemsコントローラーのアクションを定義
   resources :items
+  resources :orders, only: [:index, :create]
 end
