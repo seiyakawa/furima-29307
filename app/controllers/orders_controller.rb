@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+  # 購入画面に行きたいユーザーがログインしていなければ、ログイン画面へ遷移させる
+  before_action :authenticate_user!
+
   def index
     @item = Item.find(params[:item_id])
     @order = OrderAddress.new
