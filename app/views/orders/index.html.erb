@@ -8,7 +8,7 @@
     </h1>
     <%# 購入内容の表示 %>
     <div class='buy-item-info'>
-      <%= image_tag "item-sample.png", class: 'buy-item-img' %>
+      <%= image_tag @item.image, class: 'buy-item-img' %>
       <div class='buy-item-right-content'>
         <h2 class='buy-item-text'>
           <%= @item.text %>
@@ -32,9 +32,11 @@
     </div>
     <%# /支払額の表示 %>
 
-    <%= form_with model: @order, url: orders_path, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+    <%= form_with model: @order, url: item_orders_path, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+    <%# エラーメッセージ %>
+    <%= render 'shared/error_messages', model: f.object %>
     <%# カード情報の入力 %>
-    <div class='credit-card-form'>
+    <div class='credit-card-fexitorm'>
       <h1 class='info-input-haedline'>
         クレジットカード情報入力
       </h1>
@@ -118,7 +120,7 @@
           <label class="form-text">電話番号</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.text_field phone_number, class:"input-default", id:"phone-number", placeholder:"例）09012345678",maxlength:"11"%>
+        <%= f.text_field :phone_number, class:"input-default", id:"phone-number", placeholder:"例）09012345678",maxlength:"11"%>
       </div>
     </div>
     <%# /配送先の入力 %>

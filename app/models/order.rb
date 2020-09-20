@@ -5,4 +5,5 @@ class Order < ApplicationRecord
   belongs_to :item
   # アソシエーション1対1 親モデル
   has_one :address
+
 end

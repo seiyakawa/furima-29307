@@ -1,17 +1,37 @@
 class OrdersController < ApplicationController
   def index
-    @item = Item.find(params[:id])
-    # 商品情報を引き継げるか？
-  end  
+    @item = Item.find(params[:item_id])
+    @order = OrderAddress.new
+  end
 
   def create
-    @address = Address.create(address_params)
+    # ordersテーブルとaddressesテーブルへ同時に生成
+    @order = OrderAddress.new(order_params)
+    if @order.valid?
+      pay_item
+      @order.save
+      return redirect_to root_path
+    else
+      @item = Item.find(params[:item_id])
+      # @order = OrderAddress.new
+      render :index
+    end
   end
 
   private
+  # カード情報のみ受け取りを許可
+  def order_params
+    params.require(:order_address).permit(:token, :post_code, :prefecture_id, :city, :address, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id])
+  end
 
-  def address_params
-    params.require(:address).permit(:post_code, :prefecture_id, :city, :address, :phone_number)
-    # ユーザーIDと商品IDも保存できるか？
+  # 支払情報を生成するオブジェクト
+  def pay_item
+    @item = Item.find(params[:item_id])
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # PAY.JPテスト秘密鍵
+    Payjp::Charge.create(
+      amount: @item.price,  # 商品の値段
+      card: order_params[:token],    # カードトークン
+      currency:'jpy'                 # 通貨の種類(日本円)
+    )
   end
 end

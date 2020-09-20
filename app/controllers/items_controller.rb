@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_loguin, except: [:index, :show]
+  before_action :move_to_login, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
