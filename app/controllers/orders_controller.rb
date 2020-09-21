@@ -1,9 +1,8 @@
 class OrdersController < ApplicationController
   # 購入画面に行きたいユーザーがログインしていなければ、ログイン画面へ遷移させる
+  before_action :set_item, only: [:index, :create, :pay_item, :move_to_top_page]
   before_action :move_to_top_page
-
   def index
-    @item = Item.find(params[:item_id])
     @order = OrderAddress.new
   end
 
@@ -15,8 +14,6 @@ class OrdersController < ApplicationController
       @order.save
       redirect_to root_path
     else
-      @item = Item.find(params[:item_id])
-      # @order = OrderAddress.new
       render :index
     end
   end
@@ -30,7 +27,6 @@ class OrdersController < ApplicationController
 
   # 支払情報を生成するオブジェクト
   def pay_item
-    @item = Item.find(params[:item_id])
     Payjp.api_key = ENV['PAYJP_SECRET_KEY'] # PAY.JPテスト秘密鍵
     Payjp::Charge.create(
       amount: @item.price, # 商品の値段
@@ -40,11 +36,14 @@ class OrdersController < ApplicationController
   end
 
   def move_to_top_page
-    @item = Item.find(params[:item_id])
     if user_signed_in? != true
       redirect_to new_user_session_path
     elsif @item.user_id == current_user.id || @item.order.present?
       redirect_to root_path
     end
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 end
