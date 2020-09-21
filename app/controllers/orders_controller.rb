@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   # 購入画面に行きたいユーザーがログインしていなければ、ログイン画面へ遷移させる
   before_action :set_item, only: [:index, :create, :pay_item, :move_to_top_page]
   before_action :move_to_top_page
+
   def index
     @order = OrderAddress.new
   end
@@ -46,4 +47,5 @@ class OrdersController < ApplicationController
   def set_item
     @item = Item.find(params[:item_id])
   end
+  
 end
