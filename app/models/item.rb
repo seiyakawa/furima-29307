@@ -1,5 +1,8 @@
 class Item < ApplicationRecord
+  # アソシエーション 1対多
   belongs_to :user
+  # アソシエーション1対1 親モデル
+  has_one :order
   # itemsテーブルのレコードと画像を紐づけるためにhas_one_attachedというメソッドを利用
   has_one_attached :image
   # ActiveHashを使用してアソシエーションを設定

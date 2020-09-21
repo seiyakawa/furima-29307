@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_loguin, except: [:index, :show]
+  before_action :move_to_login, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -49,7 +49,7 @@ class ItemsController < ApplicationController
   end
 
   # 未ログインのユーザーをログインページへ遷移
-  def move_to_loguin
+  def move_to_login
     redirect_to new_user_session_path unless user_signed_in?
   end
 

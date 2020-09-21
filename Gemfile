@@ -62,6 +62,8 @@ gem "active_hash"
 gem 'mini_magick'
 # 画像のサイズを調整してくれるgem
 gem 'image_processing', '~> 1.2'
+# クレジット決済のgem
+gem "payjp"
 
 group :production do
   gem "rails_12factor"
