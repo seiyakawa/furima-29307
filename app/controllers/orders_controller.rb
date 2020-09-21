@@ -9,7 +9,6 @@ class OrdersController < ApplicationController
 
   def create
     # ordersテーブルとaddressesテーブルへ同時に生成
-    binding.pry
     @order = OrderAddress.new(order_params)
     if @order.valid?
       pay_item
