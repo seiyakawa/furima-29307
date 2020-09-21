@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   # itemsコントローラーのアクションを定義
   resources :items do
     # ある商品についての購入ネスト
-    resources :orders
+    resources :orders, only: [:index, :create]
   end 
 end
