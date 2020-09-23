@@ -64,6 +64,8 @@ gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 # クレジット決済のgem
 gem "payjp"
+# S3を使用するためのgem
+gem "aws-sdk-s3", require: false
 
 group :production do
   gem "rails_12factor"
