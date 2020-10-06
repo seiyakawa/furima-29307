@@ -1,6 +1,6 @@
 // HTMLが読み込まれた時に作動する
 // newまたeditが含まれる際に作動する
-if (document.URL.match( /new/ ) || document.URL.match( /edit/ )){
+if (document.URL.match( /item/ )){
   document.addEventListener('DOMContentLoaded', function(){
     const ImageList = document.getElementById('image-list');
 
