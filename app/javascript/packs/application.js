@@ -10,6 +10,8 @@ require("channels")
 require("../price")
 // pay.jsを呼び出す記述
 require("../card")
+// プレビューを呼び出す
+require("./preview")
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
