@@ -24,13 +24,13 @@ class Item < ApplicationRecord
     # validates :prefecture
     # validates :scheduled_delivery
     # 価格の入力は半角数字のみ 範囲は300から9,999,999
-    validates :price, numericality: { with: /\A[0-9]+\z/, message: 'Half-width number' }
-    validates_inclusion_of :price, in: 300..9_999_999, message: 'Out of setting range'
+    validates :price, numericality: { with: /\A[0-9]+\z/, message: 'を半角数字で入力してください' }
+    validates_inclusion_of :price, in: 300..9_999_999, message: 'を300〜9,999,999の範囲で入力してください'
     # validates :price,  inclusion: {in: 300..9999999, message: "Out of setting range" }
   end
 
   # ジャンルの選択が「--」の時は保存できないように設定
-  with_options numericality: { other_than: 0, message: 'Select' } do
+  with_options numericality: { other_than: 0, message: 'を選択してください' } do
     validates :category_id
     validates :sales_status_id
     validates :shipping_fee_status_id

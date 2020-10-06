@@ -31,48 +31,48 @@ RSpec.describe Item, type: :model do
       it 'categoryが空だと登録できない' do
         @item.category_id = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include('Category Select')
+        expect(@item.errors.full_messages).to include('Category を選択してください')
       end
       it 'sales_statusが空だと登録できない' do
         @item.sales_status_id = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include('Sales status Select')
+        expect(@item.errors.full_messages).to include('Sales status を選択してください')
       end
       it 'shipping_fee_statusが空だと登録できない' do
         @item.shipping_fee_status_id = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include('Shipping fee status Select')
+        expect(@item.errors.full_messages).to include('Shipping fee status を選択してください')
       end
       it 'prefectureが空だと登録できない' do
         @item.prefecture_id = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include('Prefecture Select')
+        expect(@item.errors.full_messages).to include('Prefecture を選択してください')
       end
       it 'scheduled_deliveryが空だと登録できない' do
         @item.scheduled_delivery_id = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include('Scheduled delivery Select')
+        expect(@item.errors.full_messages).to include('Scheduled delivery を選択してください')
       end
       it 'preceが空だと登録できない' do
         @item.price = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price can't be blank", 'Price Half-width number', 'Price Out of setting range')
+        expect(@item.errors.full_messages).to include("Price can't be blank", 'Price を半角数字で入力してください', 'Price を300〜9,999,999の範囲で入力してください')
       end
 
       it 'priceの値が全角数字では登録できない' do
         @item.price = '３００'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price Half-width number', 'Price Out of setting range')
+        expect(@item.errors.full_messages).to include('Price を半角数字で入力してください', 'Price を300〜9,999,999の範囲で入力してください')
       end
       it 'priceの値が300未満では登録できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price Out of setting range')
+        expect(@item.errors.full_messages).to include('Price を300〜9,999,999の範囲で入力してください')
       end
       it 'priceの値が10000000以上では登録できない' do
         @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price Out of setting range')
+        expect(@item.errors.full_messages).to include('Price を300〜9,999,999の範囲で入力してください')
       end
     end
   end
