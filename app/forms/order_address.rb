@@ -6,13 +6,13 @@ class OrderAddress
   # 空の投稿を保存できないように設定
   with_options presence: true do
     validates :token # クレジットカードトークンバリデーション
-    validates :post_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: 'Input correctly' } # 郵便番号は7桁ハイフン有
+    validates :post_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: 'にハイフンを入力してください' } # 郵便番号は7桁ハイフン有
     validates :city
     validates :address
     validates :phone_number, numericality: { with: /\A\d{11}\z/} # 電話番号は11桁ハイフン無
   end
 
-  validates :prefecture_id, numericality: { other_than: 0, message: 'Select' }
+  validates :prefecture_id, numericality: { other_than: 0, message: 'を選択してください' }
 
   def save
     # 購入の情報を保存

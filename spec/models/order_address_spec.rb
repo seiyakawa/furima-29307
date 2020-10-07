@@ -25,7 +25,7 @@ RSpec.describe OrderAddress, type: :model do
       it 'post_codeが空だと登録できない' do
         @order_address.post_code = nil
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Post code can't be blank", 'Post code Input correctly')
+        expect(@order_address.errors.full_messages).to include("Post code can't be blank", 'Post code にハイフンを入力してください')
       end
       it 'cityが空だと登録できない' do
         @order_address.city = nil
@@ -46,13 +46,13 @@ RSpec.describe OrderAddress, type: :model do
       it 'prefecture_idが0だと登録できない' do
         @order_address.prefecture_id = 0
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Prefecture Select')
+        expect(@order_address.errors.full_messages).to include('Prefecture を選択してください')
       end
 
       it 'post_codeが半角のハイフンを含んでいないと正しく登録できない' do
         @order_address.post_code = '1234567'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Post code Input correctly')
+        expect(@order_address.errors.full_messages).to include('Post code にハイフンを入力してください')
       end
       it 'phone_numberがハイフンを含んでいると正しく登録できない' do
         @order_address.phone_number = '090-123-456'
