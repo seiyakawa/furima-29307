@@ -13,7 +13,7 @@ if (document.URL.match( /item/ )){
      const blobImage = document.createElement('img');
      blobImage.setAttribute('src', blob);
     //  画像のサイズを設定
-     blobImage.width = 200;
+     blobImage.width = 141;
      blobImage.height = 100;
      // 生成したHTMLの要素をブラウザに表示させる
      imageElement.appendChild(blobImage);
